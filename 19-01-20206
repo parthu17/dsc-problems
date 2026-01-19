@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+class Employee{
+ private:
+ float salary;
+ public:
+ Employee(){
+  salary=0;
+  }
+ void calculateGrossSalary(float basicpay){
+  salary= basicpay + 0.1(basic pay) + 0.33(basic pay);
+  
+  }
+ float displaySalary(){
+  return salary;
+  }
+  };
+int main(){
+ Employee e1,e2,e3;
+ float bp1,bp2,bp3;
+ cout<<"enter basic pay of first employee"<<endl;
+ cin>>bp1;
+ e1.calculateGrossSalary(bp1);
+ cout<<"the gross salary of employee 1 is"<<e1.displaySalary()<<endl;
+ cout<<"enter basic pay of second employee"<<endl;
+ cin>>bp2;
+ e2.calculateGrossSalary(bp2);
+ cout<<"the gross salary of employee 2 is"<<e2.displaySalary()<<endl;
+ cout<<"enter basic pay of third employee"<<endl;
+ cin>>bp3;
+ e3.calculateGrossSalary(bp3);
+ cout<<"the gross salary of employee 3 is"<<e3.displaySalary()<<endl;
+ return 0;
+ }
