@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+class account{
+	private:
+		double balance;
+	public:
+		account(){
+			balance=0;
+		}
+		void newbalance(){
+			double c;
+			cout<<"enter balance"<<endl;
+			cin>>c;
+			balance+=c;
+		}
+		friend class manager;
+		
+};
+class manager{
+	public:
+		account ac;
+		void enter(){
+			ac.newbalance();
+		}
+		
+		void display(){
+			cout<<"balance is : "<<ac.balance<<endl;
+			
+		}
+		void addmoney(){
+			double x;
+			cout<<"enter money to be added"<<endl;
+			cin>>x;
+			ac.balance+=x;
+		}
+		void deductmoney(){
+			double x;
+			cout<<"enter money to be deducted"<<endl;
+			cin>>x;
+			ac.balance-=x;
+		}
+};
+int main(){
+	manager m1;
+	m1.enter();
+	m1.display();
+	m1.addmoney();
+	m1.deductmoney();
+	m1.display();
+	return 0;
+}
