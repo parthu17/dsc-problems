@@ -47,5 +47,12 @@ int main(){
 	m1.addmoney();
 	m1.deductmoney();
 	m1.display();
+    cout<<"process for first account ended"<<endl;
+	m2.enter();
+	m2.display();
+	m2.addmoney();
+	m2.deductmoney();
+	m2.display();
+	cout<<"process for second account ended"<<endl;
 	return 0;
 }
