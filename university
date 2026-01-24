@@ -29,9 +29,34 @@ class student:public acadrecord,public sportrecord{
 		void display(){
 			cout<<"details:\n"<<"acad details\n"<<rollno<<endl<<marks<<"sports details\n"<<sportname<<endl<<sportscore<<endl;
 		}
+        void overall(){
+            double over;
+            over= (0.7*marks)+(0.3*sportscore);
+            cout<<"your overall performance was:\n";
+            if(over>=90){
+              cout<<"excellent grade"<<endl;
+            }
+            else if(over>=80){
+              cout<<"very good grade"<<endl;
+            }
+            else if(over>=70){
+              cout<<"good grade"<<endl;
+            }
+            else if(over>=60){
+              cout<<"average grade"<<endl;
+            }
+            else if(over>=50){
+              cout<<"needs improvement"<<endl;
+            }
+            else{
+              cout<<"failed"<<endl;
+            }
+         }    
 };
 int main(){
 	student s;
 	s.getdetail();
 	s.display();
+    s.overall();
+    return 0;
 }
