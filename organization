@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+class employee{
+	public:
+		int empid;
+		string name;
+		double basicsalary,totalsalary;
+		employee(){
+			empid=0;
+			name="x";
+			basicsalary=0;
+			totalsalary=0;
+		}
+		void getdetail(){
+			cout<<"enter employee id,name and basic salary"<<endl;
+			cin>>empid>>name>>basicsalary;
+		}
+		
+		void display(){
+			cout<<"the employee details are:\n"<<empid<<endl<<name<<endl<<basicsalary<<endl<<totalsalary<<endl;
+		}
+};
+class manager:public employee{
+	public:
+		double allowance;
+		manager(){
+			allowance=0;
+		}
+		void getmanager(){
+			cout<<"enter allowance:\n";
+			cin>>allowance;
+		}
+		void caltotal(){
+			totalsalary=basicsalary+allowance;
+		}
+		
+};
+int main(){
+	manager m1;
+	m1.getdetail();
+	m1.caltotal();
+	m1.getmanager();
+	m1.caltotal();
+	m1.display();
+	return 0;
+}
