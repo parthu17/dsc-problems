@@ -21,8 +21,9 @@ class employee{
 		}
 };
 class manager:public employee{
-	public:
+	private:
 		double allowance;
+    public:
 		manager(){
 			allowance=0;
 		}
