@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+class acadrecord{
+	public:
+		int rollno;
+		float marks;
+		acadrecord(){
+			rollno=0;
+			marks=0;
+		}
+};
+class sportrecord{
+	public:
+		string sportname;
+		float sportscore;
+		sportrecord(){
+			sportname="x";
+			sportscore=0;
+		}
+};
+class student:public acadrecord,public sportrecord{
+	public:
+		void getdetail(){
+			cout<<"enter the academic details(rollno and marks)\n";
+			cin>>rollno>>marks;
+			cout<<"enter the sports details(sport name and score)\n";
+			cin>>sportname>>sportscore;
+		}
+		void display(){
+			cout<<"details:\n"<<"acad details\n"<<rollno<<endl<<marks<<"sports details\n"<<sportname<<endl<<sportscore<<endl;
+		}
+};
+int main(){
+	student s;
+	s.getdetail();
+	s.display();
+}
