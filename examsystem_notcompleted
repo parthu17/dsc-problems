@@ -1,0 +1,101 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+class person{
+    private:
+    string name;
+    int id;
+    public:
+    person(){
+        name="x";
+        id=0;
+    }
+    void input(){
+        cout<<"enter name and id\n";
+        cin>>name>>id;
+    }
+    void show(){
+        cout<<"name "<<name<<endl<<"id "<<id<<endl;
+        
+    }
+};
+class candidate: public person{
+    private:
+    int hallticket;
+    int marks;
+    public:
+    candidate(){
+        hallticket=0;
+        marks=0;
+    }
+    void inputcan(){
+        cout<<"enter hallticket and marks\n";
+        cin>>hallticket>>marks;
+    }
+    
+    void display(){
+        show();
+        cout<<hallticket<<endl<<marks;
+    }
+    friend class controller;
+};
+class examiner: public person {
+    private:
+    string subject;
+    int evaluatedscripts;
+    public:
+    examiner(){
+        subject="x";
+        evaluatedscripts=0;
+    }
+    void inputexam(){
+        cout<<"enter subject and evaluated scripts\n";
+        cin>>subject>>evaluatedscripts;
+    }
+    void displayexam(){
+        
+        cout<<subject<<endl<<evaluatedscripts<<endl;
+        
+    }
+    friend class controller;
+};
+class controller{
+    public:
+    int grace;
+    int reevaluation;
+    controller(){
+        grace=0;
+        reevaluation=0;
+    }
+    void inputgrace_re(){
+        cout<<"enter grace marks and reevaluation\n";
+        cin>>grace>>reevaluation;
+    }
+    void addgrace(candidate c){
+        if(c.marks<50){
+        c.marks+=grace;
+        }
+        cout<<c.hallticket<<endl<<c.marks<<endl;
+    }
+    void reeval(examiner e){
+        e.evaluatedscripts+=reevaluation;
+        cout<<e.subject<<endl<<e.evaluatedscripts;
+    }
+    
+};
+int main(){
+    candidate c1;
+    examiner e1;
+    controller con;
+    c1.input();
+    c1.inputcan();
+    c1.display();
+    cout<<"\nexaminer details\n";
+    e1.inputexam();
+    e1.displayexam();
+    con.inputgrace_re();
+    c1.show();
+    con.addgrace(c1);
+    con.reeval(e1);
+    return 0;
+}
