@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+class student{
+private:
+int roll;
+float marks;
+public:
+string college;
+student() {
+roll=0;
+marks=0;
+college="x";
+}
+void input() {
+cout<<"enter the roll no, marks and college name of the student\n";
+cin>>roll>>marks>>college;
+}
+void display() {
+cout<<"details are\n"<<roll<<endl<<marks<<endl<<college<<endl;
+}
+};
+int main() {
+student s1, s2;
+cout<<"for first student\n";
+s1. input() ;
+s1. display() ;
+cout<<"for second student\n";
+s2. input() ;
+s2. display() ;
+return 0;
+}
