@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+class student{
+public:
+float s1, s2, s3;
+student(float a, float b, float c) {
+s1=a;
+s2=b;
+s3=c;
+}
+void avg() {
+cout<<"average of the subjects is\n"<<((s1+s2+s3) /3) ;
+}
+void percent() {
+cout<<"percentage is \n"<<((s1+s2+s3) /300) *100;
+}
+};
+int main() {
+student s1(90,89,63), s2(64,97,34);
+s1. avg() ;
+s1. percent() ;
+s2. avg() ;
+s2. percent() ;
+return 0;
+}
