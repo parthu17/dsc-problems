@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+class calculator{
+public:
+float a, b;
+calculator() {
+a=0;
+b=0;
+}
+void input() {
+cout<<"enter two numbers to be used for calculations\n";
+cin>>a>>b;
+}
+void add() {
+cout<<"addition is\n"<<a+b<<endl;
+}
+void sub() {
+cout<<"subtraction is\n"<<a-b<<endl;
+}
+void division() {
+if(b! =0) {
+cout<<"division is\n"<<a/b<<endl;
+}
+else{
+cout<<"enter non zero value for second number\n";
+}
+}
+void mul() {
+cout<<"multiplication is\n"<<a*b<<endl;
+}
+};
+int main() {
+calculator c;
+c. input() ;
+c. add() ;
+c. sub() ;
+c. mul() ;
+c. division() ;
+return 0;
+}
