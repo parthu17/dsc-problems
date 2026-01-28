@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+class car{
+private:
+float speed;
+public:
+string brand;
+car() {
+speed=0;
+brand="x";
+}
+void modify() {
+float s;
+cout<<"enter speed to be modified\n";
+cin>>s;
+speed=s;
+}
+void display() {
+cout<<"brand\n"<<brand<<"speed\n"<<speed;
+}
+};
+int main() {
+car c1;
+string s;
+c1. modify() ;
+cout<<"enter brandof car\n";
+cin>>s;
+c1. brand=s;
+c1. display() ;
+return 0;
+}
