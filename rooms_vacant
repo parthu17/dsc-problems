@@ -1,0 +1,65 @@
+#include <iostream>
+using namespace std;
+class hostelroom{
+  private:
+  int roomnumber;
+  string name;
+  bool isoccupied[10]={0};
+  public:
+  hostelroom(){
+      roomnumber=0;
+      name="x";
+  }
+  void allocate(){
+      cout<<"enter the room number you want(1-10)\n";
+      cin>>roomnumber;
+      if(roomnumber<=10 && roomnumber>=1){
+          isoccupied[roomnumber-1]=1;
+      }
+      else{
+          cout<<"we only have room with room numbers 1 to 10\n";
+          allocate();
+          
+      }
+     
+  }
+  void vacate(){
+      cout<<"the room number"<<roomnumber<<"is vacated";
+      isoccupied[roomnumber-1]=0;
+  }
+  void roomstatus(){
+      for(int i=0;i<10;i++){
+          cout<<"the room "<<i+1<<" is ";
+          if(isoccupied[i]==0){
+              cout<<"vacant";
+          }
+          else{
+              cout<<"not vacant";
+          }
+          cout<<endl;
+      }
+  }
+};
+int main() {
+    // Write C++ code here
+    hostelroom h1;
+    string s1;
+    h1.roomstatus();
+    h1.allocate();
+    h1.roomstatus();
+    cout<<"do you want to vacate the allocated room(yes or no)";
+    cin>>s1;
+    if(s1=="yes"){
+        h1.vacate();
+        h1.roomstatus();
+    }
+    else if(s1=="no"){
+      h1.roomstatus();
+    }
+    else{
+        cout<<"enter yes or no only";
+    }
+    
+
+    return 0;
+}
