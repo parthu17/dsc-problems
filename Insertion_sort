@@ -10,10 +10,18 @@ j=j-1;
 }
 a[j+1]=key;
 } }
+void print(int a[],int n){
+for(int i=0;i<n;i++){
+cout<<a[i]<<" ";
+}}
 int main() {
 int a[5]={3, 2,5,4,1};
 int n=sizeof(a) /sizeof(a[0];
+cout<<"original array";
+print(a,n);
 insertion(a, n) ;
+cout<<"sorted array";
+print(a,n);
 return 0;
 }
 
