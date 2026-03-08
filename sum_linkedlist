@@ -58,6 +58,35 @@ class linkedlist{
 				cout<<"the sum of the values in linked list are "<<sum;
 				
 			}
+            float avg_first_middle_last(){
+        if(head==NULL){
+        cout<"avg is 0";
+        return;
+    }
+        int first=head->data;
+       node* temp=head;
+      int count=0;
+      while(temp!=NULL){
+        count++;
+        temp=temp->next;
+        
+    }
+      int half=count/2;
+      int position=1;
+      
+      for(temp=head;temp!=NULL;temp=temp->next){
+        if(position==half){
+            first+=temp->data;
+        }
+        else if(position==count){
+            first+=temp->data;
+        }
+        
+        position++;
+    }
+    return (float)first/3;
+    
+}
 			~linkedlist(){
 				node* temp;
 				while(head!=NULL){
