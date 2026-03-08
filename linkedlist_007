@@ -119,6 +119,23 @@ class linkedlist{
     }
   return sum;
 }
+    int sum(){
+       if(head==NULL){
+        cout<"sum is 0";
+        return;
+      }
+      int sum=0;
+      node* temp=head;
+      while(temp!=NULL){
+        sum+=temp->data;
+        temp=temp->next;
+        
+        
+    }
+      return sum;
+			
+				 
+      }
 	    void reverse(){
 	    	if(head==NULL){
 	    		cout<<"the list is empty\n";
