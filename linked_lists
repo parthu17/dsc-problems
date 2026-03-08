@@ -54,6 +54,52 @@ class linkedlist{
             head2=newnode;
             temp=temp->next;
      }}
+       void reverse_half(){
+    if(head==NULL){
+        cout<"list is empty";
+        return;
+    }
+    node* temp=head;
+    int n=0;
+    while(temp!=NULL){
+        temp=temp->next;
+        n++;
+    }
+    int half=n/2;
+    node* prev=NULL;
+    node* current=head;
+    node* next=NULL;
+    
+    while(half-- >0){
+        next=current->next;
+        current->next =prev;
+        prev=current;
+        current=next;
+        
+    }
+    
+
+ 
+}
+void reverse_element(int value){
+    if(head==NULL){
+        cout<<"list empty";
+        return;
+    }
+    if(head->data==value){
+        cout<<"reversed already";
+        return;
+    }
+    node* prev=NULL;
+    node* current=head;
+    node* next=NULL;
+    while(current->data!=value){
+        next=current->next;
+        current->next =prev;
+        prev=current;
+        current=next;
+    }
+}
 		~linkedlist(){
 			node* temp;
 			while(head!=NULL){
