@@ -3,12 +3,12 @@ using namespace std;
 void insertion(int a[],int n){
 for(int i=0;i<n;i++){
 int key=a[i];
-j=i+1;
-while(i>=0 && a[j]<key){
-a[j-1]=a[j];
-i=i-1;
+j=i-1;
+while(j>=0 && a[j]>key){
+a[j+1]=a[j];
+j=j-1;
 }
-a[j+1]=key;
+a[j]=key;
 }
 }
 int main(){
