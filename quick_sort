@@ -1,1 +1,58 @@
-#include <iostream>n 
+#include <iostream>
+#include <ctime>
+#include<cstdlib>
+using namespace std;
+void quick_sort_random(int a[],int low, int high){
+    if(low<high){
+        int pivot=partition(a,low,high);
+        quick_sort_random(a,low,pivot-1);
+        quick_sort_random(a,pivot+1,high);
+    }
+    
+}
+int partition(int a[],int low,int high){
+    int random=low+rand()%(high-low+1);
+    int i=low-1;
+    for(int j=low;j<=high;j++){
+        if(a[j]<a[random]){
+            
+            i++;
+            if(i==random){
+                random=j;
+            }
+            int temp=a[i];
+            a[i]=a[j];
+            a[j]=temp;
+        }
+        
+    }
+}
+void reverse_element(int value){
+    if(head==NULL){
+        cout<<"list empty";
+        return;
+    }
+    if(head->data==value){
+        cout<<"reversed already";
+        return;
+    }
+    node* prev=NULL;
+    node* current=head;
+    node* next=NULL;
+    while(current->data!=value){
+        next=current->next;
+        current->next =prev;
+        prev=current;
+        current=next;
+    }
+}
+int main() {
+    srand(time(0));
+    int a[]={233,3323,4321,23,3234};
+    int n=sizeof(a)/sizeof(a[0]);
+    quick_sort_random(a,0,n-1);
+    return 0;
+    
+
+    return 0;
+}
