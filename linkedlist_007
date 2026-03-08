@@ -92,36 +92,33 @@ class linkedlist{
 				cout<<"null";
 			}
 		}
-		void sum_duplicate(){
-			int sum=0;
-			if(head==NULL){
-				cout<<"list is empty\n";
-				return;
-			}
-			if(head->next==NULL){
-				cout<<"the sum of duplicate elemnets is 0\n";
-				return;
-			}
-			node* outer=head;
-			while(outer!=NULL){
-				node* inner=head;
-				node* prev=NULL;
-				while(inner!=NULL){
-				 if(inner->data==outer->data && inner!=outer){
-					sum+=inner->data;
-					prev->next=inner->next;
-					delete inner;
-					
-				}
-				 prev=inner;
-				 inner=inner->next;
-				}
-				outer=outer->next;
-				
-			}
-			cout<<"the sum of duplicate elements is "<<sum<<endl;
-			display();
-		}
+		int sum_duplicate(){
+    if(head==NULL){
+        cout<"sum is 0";
+        return;
+    }
+    node* temp=head;
+    int sum=0;
+    while(temp!=NULL){
+        node* prev=NULL;
+        node* current=head;
+        while(current!=NULL){
+            if(temp->data==current->data){
+                sum+=current->data;
+                prev->next=current->next;
+                delete current;
+                break;
+                
+            }
+            prev=current;
+            current=current->next;
+        }
+        temp=temp->next;
+        
+        
+    }
+  return sum;
+}
 	    void reverse(){
 	    	if(head==NULL){
 	    		cout<<"the list is empty\n";
