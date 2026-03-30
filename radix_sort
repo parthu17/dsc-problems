@@ -1,0 +1,34 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int getmax(int a[],int n){
+int max=a[0];
+for(int i=1;i<n;i++){
+if(a[j]>=max){
+max=a[j];
+}}
+return max;
+}
+void countingsort(int a[],int n,int exp){
+vector <int> output[n];
+int cout[10]={0};
+for(int i=0;i<n;i++){
+cout[(a[i]/exp)%10]++;
+}
+for(int i=1;i<10;i++){
+count[i]+=count[i-1];
+}
+for(int i=n-;i>=0;i--){
+output[count[(a[i]/exp)%10]-1]=a[i];
+count[(a[i]/exp)%10]--;
+}
+for(int i=0;i<n;i++){
+a[i]=output[i];
+}
+}
+void radixsort(int a[],int n){
+inr m=getmax(a,n);
+for(int exp=1;m/exp>0;exp*=10){
+countingsort(a,n,exp);
+}}
