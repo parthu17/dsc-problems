@@ -91,9 +91,40 @@ class circularlist{
 				cout<<"list empty\n";
 				return;
 			}
-			
+			node* temp=head;
+			node* prev=NULL;
+			do{
+				if(temp->data=value){
+					break;
+				}
+				prev=temp;
+				temp=temp->next;
+			}while(temp!=head);
+			if(temp->data!=value){
+				cout<<"not found\n";
+				return;
+			}
+			if(temp==head && temp->next==head){
+				delete head;
+				head=NULL;
+				return;
+			}
+			if(temp==head){
+				prev=head;
+				while(prev->next!=head){
+					prev=prev->next;
+				}
+				head=head->next;
+				prev->next=head;
+				delete temp;
+			}
+			prev->next=temp->next;
+			delete temp;
 			
 		}
+			
+			
+		
 };
 int main(){
 	circularlist c1;
