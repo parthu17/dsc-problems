@@ -1,0 +1,107 @@
+#include<iostream>
+using namespace std;
+struct node{
+	int data;
+	node* next;
+	node(int value){
+		data=value;
+		next=NULL;
+	}
+};
+class circularlist{
+	private:
+		node* head;
+	public:
+		circularlist(){
+			head=NULL;
+		}
+		void insertbegin(int value){
+			node* newnode=new node(value);
+			if(head==NULL){
+				head=newnode;
+				newnode->next=head;
+				return;
+			}
+			node* temp=head;
+			while(temp->next!=head){
+				temp=temp->next;
+			}
+			newnode->next=head;
+			temp->next=newnode;
+			head=newnode;
+		}
+		void insertend(int value){
+			node* newnode=new node(value);
+			if(head==NULL){
+				head=newnode;
+				newnode=head;
+				return;
+			}
+			node* temp=head;
+			while(temp->next!=head){
+				temp=temp->next;
+			}
+			temp->next=newnode;
+			newnode->next=head;
+		}
+		void delete_firstnode(){
+			if(head==NULL){
+				cout<<"list is empty\n";
+				return;
+			}
+			node* temp=head;
+			while(temp->next!=head){
+				temp=temp->next;
+			}
+			node* prev=head;
+			head=head->next;
+			temp->next=head;
+			delete prev;
+			
+		}
+		void display(){
+			if(head==NULL){
+				cout<<"list empty\n";
+				return;
+			}
+			node* temp=head;
+			do{
+				cout<<temp->data<<"->";
+				temp=temp->next;
+			}while(temp!=head);
+			cout<<"head";
+		}
+		void delete_last_node(){
+			if(head==NULL){
+				cout<<"list is empty\n";
+				return;
+			}
+			node* temp=head;
+			while(temp->next->next!=head){
+				temp=temp->next;
+				
+			}
+			node* prev=temp->next;
+			temp->next=head;
+			delete prev;
+			
+		}
+		void delete_value(int value){
+			if(head==NULL){
+				cout<<"list empty\n";
+				return;
+			}
+			
+			
+		}
+};
+int main(){
+	circularlist c1;
+	c1.insertbegin(20);
+	c1.insertbegin(10);
+	c1.insertend(30);
+	c1.delete_firstnode();
+	c1.delete_last_node();
+	c1.display();
+	return 0;
+}
