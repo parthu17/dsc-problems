@@ -1,0 +1,70 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+#define MAX 100
+template <typename T>
+class stack{
+	private:
+		T a[MAX];
+		T top;
+	public:
+		stack(){
+			top=-1;
+		}
+		
+		void push(T n){
+			if(top>=MAX-1){
+				cout<<"stack oveflow\n";
+				return;
+			}
+			a[++top]=n;
+		}
+		void pop(){
+			if(top<0){
+				cout<<"stack underflow\n";
+				return;
+			}
+			cout<<a[top--]<<" has been removed from stack\n";
+		}
+		int peek(){
+			if(top<0){
+				cout<<"Stack is empty\n";
+				return -1;
+			}
+			return a[top];
+		}
+		void display(){
+			if(top<0){
+				cout<<"stack is empty\n";
+				return;
+				
+			}
+			for(int i=top;i>=0;i--){
+				cout<<a[i]<<" ";
+				
+			}
+			cout<<endl;
+		}
+		
+};
+void reversevector(vector<int> &myvec){
+	stack<int> st;
+	for(int i=0;i<myvec.size();i++){
+		st.push(myvec[i]);
+	}
+	for(int i=0;i<myvec.size();i++){
+		myvec[i]=st.peek();
+		st.pop();
+	}
+	
+}
+int main(){
+	vector<int> myvec={1,12,93,112};
+	cout<<"original vector\n";
+	for(int val:myvec){
+		cout<<val<<" ";
+	}
+	cout<<endl;
+	reversevector(myvec);
+	return 0;
+}
