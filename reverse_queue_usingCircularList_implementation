@@ -1,0 +1,92 @@
+#include<iostream>
+using namespace std;
+struct node{
+	int data;
+	node* next;
+};
+class queue{
+	private:
+		node* rear;
+	public:
+		queue(){
+			rear=NULL;
+		}
+		void enqueue(int value){
+			node* newnode=new node();
+			newnode->data=value;
+			if(rear==NULL){
+				rear=newnode;
+				rear->next=rear;
+				return;
+		
+			}
+			newnode->next=rear->next;
+			rear->next=newnode;
+			rear=newnode;
+		}
+		void dequeue(){
+			if(rear==NULL){
+				cout<<"stack underflow";
+				return;
+			}
+			node* temp=rear->next;
+			if(rear==rear->next){
+				rear=NULL;
+			}
+			else{
+				rear->next=temp->next;
+				
+				
+			}
+			delete temp;
+			
+
+		}
+		void reverse(){
+			if(rear==NULL){
+				cout<<"queue is empty\n";
+				return;
+			}
+			if(rear==rear->next){
+				cout<<"queue already reversed\n";
+				return;
+			}
+			node* prev=rear;
+			node* temp=rear->next;
+			node* actrear=rear->next;
+			do{
+				node* next=temp->next;
+				temp->next=prev;
+				prev=temp;
+				temp=next;
+			}while(temp!=actrear);
+			node* first=rear;
+			do{
+				rear=rear->next;
+			}while(rear->next!=first);
+			
+		}
+		void display(){
+			if(rear==NULL){
+				cout<<"queue is empty\n";
+				return;
+			}
+			node* temp=rear->next;
+			do{
+				cout<<temp->data<<" ";
+				temp=temp->next;
+			}while(temp!=rear->next);
+			cout<<" end";
+		}
+};
+int main(){
+	queue q;
+	q.enqueue(1);
+	q.enqueue(1);
+	q.enqueue(2);
+	q.enqueue(3);
+	q.dequeue();
+	q.reverse();
+	q.display();
+	return 0;
+}
