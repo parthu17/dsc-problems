@@ -1,0 +1,81 @@
+#include<iostream>
+#define MAX 100
+using namespace std;
+class queue{
+	private:
+		int a[MAX];
+		int front;
+		int rear;
+	public:
+		queue(){
+			front=0;
+			rear=-1;
+		}
+		void enqueue(int value){
+			if(isFull()){
+				cout<<"queue overflow";
+				return;
+			}
+			a[++rear]=value;
+			
+		}
+		void dequeue(){
+			if(isEmpty()){
+				cout<<"queue underflow";
+				return;
+			}
+			cout<<a[front++]<<"has been removed from the queue";
+		}
+		void peek(){
+			if(isEmpty()){
+				cout<<"list is empty";
+				return;
+			}
+			cout<<a[front]<<"is the first element";
+		}
+		bool isEmpty(){
+			return front>rear;
+		}
+		bool isFull(){
+			return rear==MAX-1;
+		}
+		void display(){
+			if(isEmpty()){
+				cout<<"queue is empty\n";
+				return;
+			}
+			for(int i=front;i<=rear;i++){
+				cout<<a[i]<<" ";
+			}
+			cout<<"end";
+		}
+		bool isPalindrome(){
+			if(isEmpty()){
+				cout<<"queue is empty";
+				return false;
+			}
+			while(front<=rear){
+				if(a[front]!=a[rear]){
+					return false;
+				}
+				front++;
+				rear--;
+			}
+			return true;
+		}
+	
+};
+
+int main(){
+	queue q;
+	q.enqueue(1);
+	q.enqueue(2);
+	q.enqueue(0);
+	q.enqueue(1);
+	q.dequeue();
+	q.peek();
+	
+	q.display();
+	cout<<q.isPalindrome();
+	return 0;
+}
