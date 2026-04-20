@@ -20,7 +20,7 @@ public:
    return;
 }
   node* temp=root;
-while((temp->left !=NULL)|| (temp->right !=NULL)) {
+while((temp->left !=NULL) || (temp->right !=NULL)) {
 int leftheight=leftmover(temp);
 int rightheight=rightmover(temp);
 if(leftheight>=rightheight){
@@ -38,7 +38,7 @@ if(isEmpty()) {
   cout<<"Tree is empty!\n";
 return;
 }
-
+display_full_tree(root);
 
 }
 int leftmover(node* node) {
@@ -61,6 +61,11 @@ return count;
 }
 bool isEmpty() {
 return root==NULL;}
+display_full_tree(node* node){
+
+if(node->left!=NULL || node->right!=NULL){
+
+
 };
 int main() {
 binarytree t;
