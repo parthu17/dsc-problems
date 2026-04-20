@@ -1,0 +1,66 @@
+#include<iostream>
+using namespace std;
+struct node{
+int data;
+node* left;
+node* right;
+node(int value) {
+data=value;
+left=NULL;
+right=NULL;
+}
+};
+int leftmover(node* node) {
+int count=0;
+node* temp=node->left;
+while(temp! =NULL) {
+temp=temp->left;
+count++;
+}
+return count;
+}
+int rightmover(node* node) {
+int count=0;
+node* temp=node->right;
+while(temp! =NULL) {
+temp=temp->right;
+count++;
+}
+return count;
+}
+
+class binarytree{
+private:
+node* root;
+public:
+binarytree() {
+root=NULL;
+}
+void insert(int value){
+node* newnode=new node(value);
+if(root==NULL) {
+root=newnode;
+return;
+}
+node* temp=root;
+while((temp->left!=NULL)&& (temp->right! =NULL) {
+
+}
+void display() {
+if(isEmpty()) {
+cout<<"Tree is empty!\n";
+return;
+}
+//code to display when tree is not empty
+}
+bool isEmpty() {
+return root==NULL;}
+};
+int main() {
+binarytree t;
+t. insert(10) ;
+t. insert(20) ;
+t. insert(30) ;
+t. display() ;
+return 0;
+}
