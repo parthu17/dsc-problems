@@ -1,77 +1,58 @@
 #include<iostream>
 using namespace std;
-struct node{
+class node{
+public:
  int data;
  node* left;
  node* right;
+ node(int value){
+   data=value;
+   left=NULL;
+   right=NULL;
 };
 class binarytree{
-private:
- node* root;
 public:
+ node* root;
  binarytree() {
   root=NULL;
 }
- void insert(int value){
-  node* newnode=new node();
-  newnode->data=value;
-  if(root==NULL) {
-   root=newnode;
-   return;
+node* insertatleft(node* parent,int value){
+ parent->left=new node(value);
+ return parent->left;
 }
-  node* temp=root;
-while((temp->left !=NULL) || (temp->right !=NULL)) {
-int leftheight=leftmover(temp);
-int rightheight=rightmover(temp);
-if(leftheight>=rightheight){
-temp=temp->left;
+node* insertatright(node* parent,int value){
+ parent->right=new node(value);
+ return parent->right;
 }
-else{
-temp=temp->right;
+void inorder(node* root){
+if(root!=NULL){
+ inorder(root.left);
+ cout<<root->data<<"->";
+ inorder(root.right);
 }
 }
-temp->left=newnode;
+void preorder(node* root){
+if(root!=NULL){
+ cout<<root->data<<"->";
+ preorder(root->left);
+ preorder(root->right);
 }
-
-void display() {
-if(isEmpty()) {
-  cout<<"Tree is empty!\n";
-return;
 }
-display_full_tree(root);
-
+void postorder(node* root){
+if(root!=NULL){
+ postorder(root->left);
+ postorder(root->right);
+ cout<<root->data<<"->";
 }
-int leftmover(node* node) {
-int count=0;
-node* temp=node->left;
-while(temp !=NULL) {
-temp=temp->left;
-count++;
 }
-return count;
-}
-int rightmover(node* node) {
-int count=0;
-node* temp=node->right;
-while(temp!=NULL) {
-temp=temp->right;
-count++;
-}
-return count;
-}
-bool isEmpty() {
-return root==NULL;}
-display_full_tree(node* node){
-
-if(node->left!=NULL || node->right!=NULL){
-
-
 };
-int main() {
-binarytree t;
-t. insert(10) ;
-t. insert(20) ;
-t. insert(30) ;
-t. display() ;
+int main(){
+binarytree b1;
+b1.root= new node(10);
+b1.insertatleft(b1.root,20);
+b1.insertatright(b1.root,30);
+b1.inorder(b1.root);
+b1.preorder(b1.root);
+b1.postorder(b1.root);
 return 0;
 }
