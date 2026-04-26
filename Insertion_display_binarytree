@@ -49,8 +49,8 @@ if(root!=NULL){
 int main(){
 binarytree b1;
 b1.root= new node(10);
-b1.insertatleft(b1.root,20);
-b1.insertatright(b1.root,30);
+node* left=b1.insertatleft(b1.root,20);
+node* right=b1.insertatright(b1.root,30);
 b1.inorder(b1.root);
 b1.preorder(b1.root);
 b1.postorder(b1.root);
