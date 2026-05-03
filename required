@@ -1,0 +1,291 @@
+Constructing a Balanced BST from a Sorted Array
+#include <iostream>
+#include <vector>
+using namespace std;
+
+struct Node {
+    int data;
+    Node *left, *right;
+    Node(int val) : data(val), left(nullptr), right(nullptr) {}
+};
+
+// Logic: Pick the middle, make it root, then do the same for left and right halves
+Node* buildBalancedBST(vector<int>& arr, int start, int end) {
+    if (start > end) return nullptr;
+
+    // Find the middle element
+    int mid = (start + end) / 2;
+    Node* root = new Node(arr[mid]);
+
+    // Recursively build the left and right sides
+    root->left = buildBalancedBST(arr, start, mid - 1);
+    root->right = buildBalancedBST(arr, mid + 1, end);
+
+    return root;
+}
+Printing the Tree Level-by-Level
+#include <queue>
+
+void printLevelOrder(Node* root) {
+    if (root == nullptr) return;
+
+    queue<Node*> q;
+    q.push(root); // Start with the root
+
+    while (!q.empty()) {
+        int nodesAtCurrentLevel = q.size();
+
+        // This inner loop ensures we finish one horizontal level at a time
+        while (nodesAtCurrentLevel > 0) {
+            Node* current = q.front();
+            cout << current->data << " ";
+            q.pop();
+
+            // Put children in the queue for the next level
+            if (current->left) q.push(current->left);
+            if (current->right) q.push(current->right);
+
+            nodesAtCurrentLevel--;
+        }
+        cout << endl; // Jump to a new line for the next level
+    }
+}
+Deletion Program
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+class SimpleMaxHeap {
+public:
+    vector<int> heap;
+
+    // Helper function to fix the heap after deletion
+    void heapifyDown(int i) {
+        int n = heap.size();
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
+        // Check if left child is larger than root
+        if (left < n && heap[left] > heap[largest])
+            largest = left;
+
+        // Check if right child is larger than the largest so far
+        if (right < n && heap[right] > heap[largest])
+            largest = right;
+
+        // If the largest is not the root, swap and keep sinking down
+        if (largest != i) {
+            swap(heap[i], heap[largest]);
+            heapifyDown(largest);
+        }
+    }
+
+    // Function to add a number (for setup)
+    void insert(int val) {
+        heap.push_back(val);
+        int i = heap.size() - 1;
+        // Simple heapify-up to keep it a Max Heap
+        while (i != 0 && heap[(i - 1) / 2] < heap[i]) {
+            swap(heap[i], heap[(i - 1) / 2]);
+            i = (i - 1) / 2;
+        }
+    }
+
+    // THE DELETION FUNCTION
+    void deleteRoot() {
+        if (heap.empty()) {
+            cout << "Heap is empty!" << endl;
+            return;
+        }
+
+        cout << "\nDeleting root: " << heap[0] << endl;
+
+        // Step 1: Replace root with last element
+        heap[0] = heap.back();
+
+        // Step 2: Remove the last element
+        heap.pop_back();
+
+        // Step 3: Sink the new root down to its correct spot
+        if (!heap.empty()) {
+            heapifyDown(0);
+        }
+    }
+
+    void display() {
+        for (int x : heap) cout << x << " ";
+        cout << endl;
+    }
+};
+
+int main() {
+    SimpleMaxHeap mh;
+
+    // Setting up a heap
+    mh.insert(40);
+    mh.insert(30);
+    mh.insert(10);
+    mh.insert(20);
+    mh.insert(15);
+
+    cout << "Heap before deletion: ";
+    mh.display();
+
+    mh.deleteRoot();
+
+    cout << "Heap after deletion: ";
+    mh.display();
+
+    return 0;
+}
+Heap Deletion & Heap Sort
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Function to maintain the Max Heap property
+// n is size of heap, i is the index of the 'root' of the sub-tree
+void heapify(int arr[], int n, int i) {
+    int largest = i;       // Assume current node is largest
+    int left = 2 * i + 1;  // Left child index
+    int right = 2 * i + 2; // Right child index
+
+    // If left child is larger than root
+    if (left < n && arr[left] > arr[largest])
+        largest = left;
+
+    // If right child is larger than the largest so far
+    if (right < n && arr[right] > arr[largest])
+        largest = right;
+
+    // If largest is not the root, swap and continue heapifying down
+    if (largest != i) {
+        swap(arr[i], arr[largest]);
+        heapify(arr, n, largest); 
+    }
+}
+
+// Function to perform Heap Sort
+void heapSort(int arr[], int n) {
+    // Step 1: Build a Max Heap (rearrange array)
+    for (int i = n / 2 - 1; i >= 0; i--) {
+        heapify(arr, n, i);
+    }
+
+    // Step 2: One by one extract elements from heap
+    for (int i = n - 1; i > 0; i--) {
+        // Move current root to the end (this is like 'deletion')
+        swap(arr[0], arr[i]);
+
+        // Call heapify on the reduced heap
+        heapify(arr, i, 0);
+    }
+}
+perform basic Graph operations, such as adding vertices and edges, and displaying the representation
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// A class to manage our Graph
+class Graph {
+    int numVertices;
+    // An array of vectors: each index is a vertex, the vector holds its neighbors
+    vector<int>* adjLists;
+
+public:
+    // Initialize the graph with a specific number of vertices
+    Graph(int vertices) {
+        numVertices = vertices;
+        adjLists = new vector<int>[vertices];
+    }
+
+    // Operation 1: Adding an Edge (Connecting two dots)
+    // For an undirected graph, if A is connected to B, then B is connected to A
+    void addEdge(int source, int destination) {
+        adjLists[source].push_back(destination);
+        adjLists[destination].push_back(source);
+        cout << "Added edge between " << source << " and " << destination << endl;
+    }
+
+    // Operation 2: Displaying the Graph
+    void display() {
+        cout << "\n--- Adjacency List Representation ---" << endl;
+        for (int i = 0; i < numVertices; i++) {
+            cout << "Vertex " << i << ":";
+            // Loop through the list of neighbors for vertex 'i'
+            for (int neighbor : adjLists[i]) {
+                cout << " -> " << neighbor;
+            }
+            cout << " (null)" << endl;
+        }
+    }
+};
+Graphs:adjacent matrix
+#include <iostream>
+using namespace std;
+
+int main() {
+    int nodes = 4;
+    // Create a 4x4 grid filled with 0
+    int matrix[4][4] = {0};
+
+    // Add an edge between Node 0 and Node 1
+    matrix[0][1] = 1;
+    matrix[1][0] = 1;
+
+    // Add an edge between Node 1 and Node 2
+    matrix[1][2] = 1;
+    matrix[2][1] = 1;
+
+    cout << "Adjacency Matrix (The Graph Grid):" << endl;
+    for (int i = 0; i < nodes; i++) {
+        for (int j = 0; j < nodes; j++) {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+Heaps
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+void heapify(vector<int>& arr, int n, int i) {
+    int largest = i; 
+    int left = 2 * i + 1; 
+    int right = 2 * i + 2; 
+
+    // If left child is larger than root
+    if (left < n && arr[left] > arr[largest])
+        largest = left;
+
+    // If right child is larger than largest so far
+    if (right < n && arr[right] > arr[largest])
+        largest = right;
+
+    // If largest is not root, swap and keep fixing
+    if (largest != i) {
+        swap(arr[i], arr[largest]);
+        heapify(arr, n, largest);
+    }
+}
+
+int main() {
+    vector<int> arr = {12, 11, 13, 5, 6, 7};
+    int n = arr.size();
+
+    // Turn unsorted array into a Max Heap
+    for (int i = n / 2 - 1; i >= 0; i--)
+        heapify(arr, n, i);
+
+    cout << "Max Heap array: ";
+    for (int i : arr) cout << i << " ";
+    return 0;
+} 
