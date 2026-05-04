@@ -1,0 +1,67 @@
+perform basic Graph operations, such as adding vertices and edges, and displaying the representation
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// A class to manage our Graph
+class Graph {
+    int numVertices;
+    // An array of vectors: each index is a vertex, the vector holds its neighbors
+    vector<int>* adjLists;
+
+public:
+    // Initialize the graph with a specific number of vertices
+    Graph(int vertices) {
+        numVertices = vertices;
+        adjLists = new vector<int>[vertices];
+    }
+
+    // Operation 1: Adding an Edge (Connecting two dots)
+    // For an undirected graph, if A is connected to B, then B is connected to A
+    void addEdge(int source, int destination) {
+        adjLists[source].push_back(destination);
+        adjLists[destination].push_back(source);
+        cout << "Added edge between " << source << " and " << destination << endl;
+    }
+
+    // Operation 2: Displaying the Graph
+    void display() {
+        cout << "\n--- Adjacency List Representation ---" << endl;
+        for (int i = 0; i < numVertices; i++) {
+            cout << "Vertex " << i << ":";
+            // Loop through the list of neighbors for vertex 'i'
+            for (int neighbor : adjLists[i]) {
+                cout << " -> " << neighbor;
+            }
+            cout << " (null)" << endl;
+        }
+    }
+};
+Graphs:adjacent matrix
+#include <iostream>
+using namespace std;
+
+int main() {
+    int nodes = 4;
+    // Create a 4x4 grid filled with 0
+    int matrix[4][4] = {0};
+
+    // Add an edge between Node 0 and Node 1
+    matrix[0][1] = 1;
+    matrix[1][0] = 1;
+
+    // Add an edge between Node 1 and Node 2
+    matrix[1][2] = 1;
+    matrix[2][1] = 1;
+
+    cout << "Adjacency Matrix (The Graph Grid):" << endl;
+    for (int i = 0; i < nodes; i++) {
+        for (int j = 0; j < nodes; j++) {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
