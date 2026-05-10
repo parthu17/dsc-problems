@@ -26,9 +26,9 @@ node* insertatright(node* parent,int value){
 }
 void inorder(node* root){
 if(root!=NULL){
- inorder(root.left);
+ inorder(root->left);
  cout<<root->data<<"->";
- inorder(root.right);
+ inorder(root->right);
 }
 }
 void preorder(node* root){
